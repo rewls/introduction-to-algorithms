@@ -70,7 +70,7 @@ $$
 
 - $n \ge 15$
 
-### Problems
+## Problems
 
 | |1<br>second|1<br>minute>|1<br>hour|1<br>day|1<br>month|1<br>year|1<br>century|
 |-|-|-|-|-|-|-|-|
