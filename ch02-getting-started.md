@@ -482,4 +482,4 @@ return n;
 
 - Maintenance: Let us suppose that `L[i] <= R[j]`. Because `(i, j)` is not an inversion, incrementing `i` and `k` prepares the loop invariant for the next iteration. If `L[i] > R[j]`, `(i, j)` is an inversion. Because `L` is sorted, `(x, j)` for all `x` in `L[i..n1]` is an inversion. Thus adding the number of the inversions for the right index `j` and incrementing `j`, `n` is the number of inversions in which the left index is in `L[1..n]` and the right one is in `R[1..j-1]`.
 
-- Termination: When `i = n1 + 1` or `j = n2 + 1`, the loop terminates. `n` is the number of inversions in which the left index is in `L[1..n1]` and the right on is in `R[1..j-1], in that `R[1..n2]`, the entire number of inversions.
+- Termination: When `i = n1 + 1` or `j = n2 + 1`, the loop terminates. `n` is the number of inversions in which the left index is in `L[1..n1]` and the right on is in `R[1..j-1]`, in that `R[1..n2]`, the entire number of inversions.
