@@ -91,13 +91,13 @@ $$
 ```c
 for i = 1 to A.length - 1
     min_i = i
-    for j = 1 to A.length
+    for j = 1 + 1 to A.length
         if A[j] < A[min_i]
             min_i = j
-    A[i] = A[min_i]
+    exchange A[i] with A[min_i]
 ```
 
-- Loop invariant: At the start of each iteration of the `for` loop of lines 1-6, the subarray `A[1..i-1]` consists of the smallest `i - 1` elements in sorted order.
+- Loop invariant: At the start of each iteration of the `for` loop of lines 1-6, the subarray `A[1..i-1]` consists of the smallest `i - 1` elements in sorted order and the elements is in `A`.
         
 - Initialization: Starting at `i = 1`, the subarray `A[1..i-1]` consists of zero elements, which preserves the loop invariant.
 
@@ -107,7 +107,7 @@ for i = 1 to A.length - 1
 
 - Hence, the algorithm is correct.
 
-- best-case and worst-case running times: $\Theta(n^2)$
+- best-case and worst-case running times of the algorithm is $\Theta(n^2)$.
 
 #### 3
 
@@ -115,7 +115,9 @@ for i = 1 to A.length - 1
 
 #### 4
 
-- We can put the condition for the best case and thus process it in $\Theta(1)$ with the already computed result.
+- We can put the condition for the best case and thus process it, which takes less time.
+
+- For example, the best-case for the problem to sort the given array is for the array already sorted. Modify the algorithm so that it checks whether the array of length $n$ is sorted, which takes $\Theta(n)$. If it is, the algorithm terminates.
 
 ## 2.3 Designing algorithms
 
@@ -147,18 +149,23 @@ for j = 2 to n2
     R[j] = A[q+j]
 i = 1
 j = 1
-for k = p to r
-    if i > n1
+k = p
+while i <= n1 and j <= n2
+    if L[i] < R[j]
+        A[k] = L[i]
+        i = i + 1
+    else
         A[k] = R[j]
         j = j + 1
-    else if j > n2
-        A[k] = L[i]
-        i = i + 1
-    else if L[i] < R[j]
-        A[k] = L[i]
-        i = i + 1
-    else A[k] = R[j]
-        j = j + 1
+    k = k + 1
+while i <= n1
+    A[k] = L[i]
+    i = i + 1
+    k = k + 1
+while j <= n2
+    A[k] = R[j]
+    j = j + 1
+    k = k + 1
 ```
 
 #### 3
@@ -201,13 +208,13 @@ $$
 
 #### 5
 
-- `BINARY-SEARCH(A, v)` iterative:
+- `ITERATIVE-BINARY-SEARCH(A, v)`:
  
 ```c
 start = 1
 end = A.length
 while start <= end
-    mid = (start + end) // 2
+    mid = floor((start + end) / 2)
     if A[mid] == v
         return mid
     if A[mid] > v
@@ -219,18 +226,18 @@ return NIL
 
 - $T(n) = \lg n$
 
-- `BINARY-SEARCH(A, v, start, end)` recursive:
+- `RECURSIVE-BINARY-SEARCH(A, v, start, end)`:
 
 ```c
 if start > end
     return NIL
-mid = (start + end) // 2
+mid = floor((start + end) / 2)
 if A[mid] == v
     return mid
 if (A[mid] > val)
-    BINARY-SEARCH(A, v, low, mid-1)
+    return BINARY-SEARCH(A, v, low, mid-1)
 else
-    BINARY-SEARCH(A, v, mid+1, high)
+    return BINARY-SEARCH(A, v, mid+1, high)
 ```
 
 $$
@@ -371,21 +378,57 @@ $$
 
 #### a
 
-- (3, 4), (1, 5), (2, 5), (3, 5), (4, 5)
+- $(3, 4), (1, 5), (2, 5), (3, 5), (4, 5)$
 
 #### b
 
-- The array [n, n-1, ..., 1] has the most inversions, and the number of inversions is ${(n-1)n \over 2}$.
+- The array [n, n-1, ..., 1] has the most inversions. It has an inversion $(i, j)$ for all $1 \le i \le n$. the number of inversions is ${n \choose 2} = {(n-1)n \over 2}$.
 
 #### c
 
-The running time of insertion sort is $\Theta(n^2)$, and the max number of inversions is ${(n-1)n \over 2} = \Theta(n^2)$. Both values in $\Theta$-notation are equal.
+- The running time of insertion sort is $\Theta(n^2)$, and the max number of inversions is ${(n-1)n \over 2} = \Theta(n^2)$. Both values in $\Theta$-notation are equal.
 
-- In insersion sort pseudocode, adding counting code to the body of the `for` loop, the number of inversions is computed. Thus, the number of inversions is proportional to the running time of insertion sort.
+- In insersion sort pseudocode, adding counting code to the body of the `for` loop, the number of inversions is computed as below.
+
+- `COUNT-INVERSION(A)`:
+
+```c
+n = 0
+for j = 2 to A.length
+    key = A[j]
+    i = j - 1
+    while i > 0 and A[i] > key
+        A[i + 1] = A[i]
+        i = i - 1
+    A[i + 1] = key 
+    n = n + (j - 1) - i
+```
+
+- The loop invariant for this algorithm is simillar to for insertion sort, except for someting added as the below. We would show correctness only about inversion because we've already seen about insertion sort in the book.
+
+- Loop invariant: At the start of each iteration, the variable `n` is the number of inversions in which the right index is `k` for all `1 <= k <= j - 1`. `A[1..j-1]` consists of the elements originally in `A[1..j-1]`, but in sorted order.
+
+    - The reason for sorting is that by sorting, we can specify the boundary of elements greater than `A[j]` without checking all elements in `A[1..j-1]`
+
+- Initializatoin: When `j = 2`, `n` is 0, the number of inversions in which the right index is `j - 1 = 1`.
+
+- Maintenance: After lines 3-8 which is part of the insertion sort code, the number of indexs passed in the `while` loop of lines 5-7 is the number of inversions in which the right index is `j` because `A[1..j-1]` is sorted. It is added to `n`, thus `n` is the number of inversions in which the right index is `k` for all `1 <= k <= j`, preserving the loop invariant for the next iteration.
+
+- Termination: When `j = A.length + 1`, the loop terminates. `n` is the number of inversions in which the right index is `k` for all `1 <= k <= j - 1`, `1 <= k <= A.length`. Thus `n` is the number of inversions for `A`.
+
+- Since we have added a constant amount of additional work to each iteration, running time of counting the number of inversions is proportional to of insertion sort.
 
 #### d
 
-- `MERGE-INVERSION(A, p, r)`:
+- Divide: Divide the $n$-element in which we count inversions into two subsequences of $n/2$ elements each.
+
+- Conquer: Count inversions in two subsequences recursively.
+
+which right index is in one subsequence and left one is in another recursively, sorting the two subsequences.
+
+- Combine: Add the number of inversions in which the right index is in one subsequence and the left one is in other to produce the entire number of inversions, merging the two sorted subsequences to eliminating the inversions in that to avoid double counting.
+
+- `MERGE-COUNT-INVERSION(A, p, r)`:
 
 ```c
 if p >= r
@@ -411,18 +454,32 @@ for j = 2 to n2
 n = 0
 i = 1
 j = 1
-for k = p to r
-    if i > n1
+k = p
+while i <= n1 and j <= n2
+    if L[i] <= R[j]
+        A[k] = L[i]
+        i = i + 1
+    else
         A[k] = R[j]
         j = j + 1
-    else if j > n2
-        A[k] = L[i]
-        i = i + 1
-    else if L[i] < R[j]
-        A[k] = L[i]
-        i = i + 1
-    else A[k] = R[j]
-        j = j + 1
-        n = n + 1
+        n = n + n1 - i + 1
+while i <= n1
+    A[k] = L[i]
+    i = i + 1
+    k = k + 1
+while i <= n2
+    A[k] = R[j]
+    j = j + 1
+    K = k + 1
 return n;
 ```
+
+- The loop invariant for this algorithm is simillar to for merge, except for someting added as the below. We would show correctness only about inversion because we've already seen about merge in the book.
+
+- Loop invariant: At the start of each iteration, the variable `n` is the number of inversions in which the left index is in `L[1..n1]` and the right index is in `R[1..j-1]`. `A[p..k-1]` consists of the element in `L[1..i-1]` and `R[1..j-1]`, but in sorted order.
+
+- Initialization: When `i = 1`, `j = 1`, and `k = p`, `n` is 0, the number of inversions in which the left index is in `L[1..n1]` and the right one is in `R[1..j-1]`, the empty array `R[1..0]`.
+
+- Maintenance: Let us suppose that `L[i] <= R[j]`. Because `(i, j)` is not an inversion, incrementing `i` and `k` prepares the loop invariant for the next iteration. If `L[i] > R[j]`, `(i, j)` is an inversion. Because `L` is sorted, `(x, j)` for all `x` in `L[i..n1]` is an inversion. Thus adding the number of the inversions for the right index `j` and incrementing `j`, `n` is the number of inversions in which the left index is in `L[1..n]` and the right one is in `R[1..j-1]`.
+
+- Termination: When `i = n1 + 1` or `j = n2 + 1`, the loop terminates. `n` is the number of inversions in which the left index is in `L[1..n1]` and the right on is in `R[1..j-1], in that `R[1..n2]`, the entire number of inversions.
