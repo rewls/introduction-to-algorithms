@@ -109,19 +109,19 @@ $$
 #### 8
 
 $$
-\begin{aligned}
-\Omega(g(n,m)) = \{f(n, m):\\; &\text{there exist positive constants } c, n_0, \text{and }m_0 \\
+\begin{align}
+\Omega(g(n,m)) = \{f(n, m):\; &\text{there exist positive constants } c, n_0, \text{and }m_0 \\
 &\text{such that }0 \le cg(n, m) \le f(n, m) \\
 &\text{for all }n \ge n_0 \text{ or } m \ge m_0\}
-\end{aligned}
+\end{align}
 $$
 
 $$
-\begin{aligned}
-\Theta(g(n,m)) = \{f(n, m):\\; &\text{there exist positive constants } c_1, c_2, n_0, \text{and }m_0 \\
+\begin{align}
+\Theta(g(n,m)) = \{f(n, m):\; &\text{there exist positive constants } c_1, c_2, n_0, \text{and }m_0 \\
 &\text{such that }0 \le c_1g(n, m) \le f(n, m) \le c_2g(n,m) \\
 &\text{for all }n \ge n_0 \text{ or } m \ge m_0\}
-\end{aligned}
+\end{align}
 $$
 
 ## 3.2 Standard notations and common functions
