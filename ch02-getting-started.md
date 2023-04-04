@@ -266,7 +266,7 @@ $$
 
 ## Problems
 
-### 1
+### 1 Insertion sort on small arrays in merge sort
 
 #### a
 
@@ -303,7 +303,7 @@ $$
 
 - Choose largest k for which insertion sort is faster than merge sort.
 
-### 2
+### 2 Correctness of bubblesort
 
 #### a
 
@@ -333,7 +333,7 @@ $$
 
 - The number of first `for` loop of lines 1-4 iterations is $n$ and for each the number of second `for` loop of lines 2-4 is $n - i$. Because the body of two `for` loop takes constant time, we can ignore them. Thus, the worst time for bubble sort is $n \cdot (n-i) = \Theta(n^2)$, equal to for insertion sort.
 
-### 3
+### 3 Correctness of Horner's rule
 
 #### a
 
@@ -374,7 +374,7 @@ $$
 
 - At the end of the `for` loop, The loop invariant implies `y` is the evaluation of a polynomial with the given coefficients.
 
-### 4
+### 4 Inversions
 
 #### a
 
