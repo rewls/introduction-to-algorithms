@@ -109,19 +109,19 @@ $$
 #### 8
 
 $$
-\begin{align}
+\begin{aligned}
 \Omega(g(n,m)) = \{f(n, m):\; &\text{there exist positive constants } c, n_0, \text{and }m_0 \\
 &\text{such that }0 \le cg(n, m) \le f(n, m) \\
 &\text{for all }n \ge n_0 \text{ or } m \ge m_0\}
-\end{align}
+\end{aligned}
 $$
 
 $$
-\begin{align}
+\begin{aligned}
 \Theta(g(n,m)) = \{f(n, m):\; &\text{there exist positive constants } c_1, c_2, n_0, \text{and }m_0 \\
 &\text{such that }0 \le c_1g(n, m) \le f(n, m) \le c_2g(n,m) \\
 &\text{for all }n \ge n_0 \text{ or } m \ge m_0\}
-\end{align}
+\end{aligned}
 $$
 
 ## 3.2 Standard notations and common functions
@@ -235,6 +235,7 @@ $$
 $$
 \lim_{t \to \infty}{\lg(1 + t) \over t} = 0
 $$
+
 - Thus, $\lg^*(\lg n)$ is asymptotically larger than $\lg(\lg^*n)$.
 
 #### 6
