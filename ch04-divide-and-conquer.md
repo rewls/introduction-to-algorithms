@@ -390,11 +390,11 @@ $$
 
 - The subproblem size for a node at depth $i$ is $n/2^i$.
 
-- Since $n/2^i = 1$, or $i = \lg n$, the height of the tree is $\lg n$. Thus, the tree has $\lg n + 1$ levels (at depth 0, 1, 2, ..., $\lg n$)
+- Since $n/2^i = 1$, or $i = \lg n$, the height of the tree is $\lg n$. Thus, the tree has $\lg n + 1$ levels (at depth 0, 1, 2, ..., $\lg n$).
 
 - The number of nodes at depth $i$ is $3^i$ and each node at depth $i$, for $i = 0, 1, 2, ..., \lg n-1$, has a cost of $n/2^i$.
 
-- Multiplying, the total cost over all nodes at depth $i$, for $i = 0, 1, 2, ..., \lg n$, is $(3/2)^in$.
+- Multiplying, the total cost over all nodes at depth $i$, for $i = 0, 1, 2, ..., \lg n-1$, is $(3/2)^in$.
 
 - The bottom level, at depth $\lg n$, has $3^{\lg n} = n^{\lg 3}$ nodes, each contributing cost $T(1)$, for a total cost of $n^{\lg 3}T(1)$, which is $\Theta(n^{\lg 3})$.
 
@@ -436,7 +436,7 @@ $$
 
 #### 2
 
-- The subproblem size for a node at depth $i$ is $n/2^*$.
+- The subproblem size for a node at depth $i$ is $n/2^i$.
 
 - Since $n/2^i = 1$, or $i = \lg n$, the height of the tree is $\lg n$. Thus, the tree has $\lg n+ 1$ levels (at depth 0, 1, 2, ..., $\lg n$)
 
@@ -543,7 +543,7 @@ T(n)
 \end{aligned}
 $$
 
-- Since our guess failed, we $T(n) \le c(2^n - 1)$ instead.
+- Since our guess failed, we guess $T(n) \le c(2^n - 1)$ instead.
 
 $$
 \begin{aligned}
@@ -586,19 +586,21 @@ $$
 
 - Since Starssen's algorithm take $\Theta(n^{\lg 7})$, the largest integer value of a is 48.
 
-### Lecture exercises
+## Lecture exercises
+
+### 1 Master method
 
 Use the master method to give tight asymptotic bounds for the following recurrences.
 
-#### 1
+#### a
 
 > $T(n) = 5T(n/2) + \Theta(n^2)$
 
 - $a = 5$, $b = 2$, $f(n) = \Theta(n^2)$
 
-- Since $f(n) = O(n^{\lg 5 - \epsilon})$ for $\epsilon = \lg 5 - 2$, case 1 applies, and we have the solution $T(n) = \Theta(n^\lg 5)$.
+- Since $f(n) = O(n^{\lg 5 - \epsilon})$ for $\epsilon = \lg 5 - 2$, case 1 applies, and we have the solution $T(n) = \Theta(n^{\lg 5})$.
 
-#### 2
+#### b
 
 > $T(n) = 27T(n/3) + \Theta(n^3\lg n)$
 
@@ -606,10 +608,206 @@ Use the master method to give tight asymptotic bounds for the following recurren
 
 - Since $\Theta(n^3\lg n)$ is not polynomially larger than $n^{\log_3 27} = n^3$, we can't use master method.
 
-#### 3
+#### c
 
 > $T(n) = 5T(n/2) + \Theta(n^3)$
 
 - $a = 5$, $b = 2$, $f(n) = \Theta(n^3)$
 
 - Since $f(n) = \Omega(n^{\lg 5 + \epsilon})$ for $\epsilon = 3 - \lg 5$ and for sufficiently large $n$ $5f(n/2) = 5(n/2)^3 \le (5/8)n^3 = cf(n)$ for $c = 5/8$, case 3 applies and we have the solution $T(n) = \Theta(n^3)$.
+
+### 2 K-selection
+
+The below pseudocode represents K-selection algorithm.
+
+- `SELECT(A, k)`:
+
+```c
+// If A.length = O(1), then any sorting algorithm runs in time O(1).
+if A.length  <= 25:
+    A = INSERTION-SORT(A)
+    return A[k]
+pivot = getPivot(A)
+L, pivot, R = PARTITION(A, pivot)
+if L.length == k
+    return pivot
+else if L.length > k
+    return SELECT(L, k)
+else
+    return SELECT(R, k - L.length)
+```
+
+Assume that above the algorithm has the following recurrence.
+
+$$
+T(n) = \begin{cases}
+T(L.length) + O(n) & \text{if }L.length > k - 1 \\
+T(R.length) + O(n) & \text{if }L.length < k - 1 \\
+O(n) & \text{if }L.length = k - 1
+\end{cases}
+$$
+
+#### a
+
+Use a recursion tree to determine a good asymptotic upper bound on the given recurrence for the best pivot value. Use the substitution method to verify your answer.
+
+- The best pivot value is the value that can exactly divide the given array. Thus given recurrence changes to:
+
+$$
+T(n) = \begin{cases}
+O(n) & \text{if } L.length = k - 1 \\
+2T(n/2) + O(n) & \text{elsewhere}
+\end{cases}
+$$
+
+- The subproblem size for a node at depth $i$ is $n/2^i$.
+
+- Since $n/2^i = 1$, or $i = \lg n$, the height of the tree is $\lg n$. Thus, the tree has $\lg n + 1$ levels.
+
+- The number of nodes at depth $i$ is $2^i$ and each node at depth $i$ has a cost of $cn/2^i$, in which $c$ represents the constant factor in the $O(n)$ term.
+
+- Multiplying, the total cost over all nodes at depth $i$ is $cn$
+
+$$
+\begin{aligned}
+T(n)
+&= \sum_{i=0}^{\lg n}cn \\
+&= c{n(n-1) \over 2} \\
+&= O(n^2)
+\end{aligned}
+$$
+
+- We geuss $T(n) \le cn^2$.
+
+$$
+\begin{aligned}
+T(n)
+&\le 2c(n/2)^2 + O(n) \\
+&= cn/2 + O(n) \\
+&\le cn
+\end{aligned}
+$$
+
+- where the last step holds for $cn >= 2O(n)$.
+
+#### b
+
+Use the master method to give tight asymptotic bounds for the recurrence for the best pivot value in the above.
+
+- $a = 2$, $b = 2$, $f(n) = O(n)$.
+
+- Since $log_a b = \lg 2 = 1$, $f(n) = \Theta(n^{\log_b a})$.
+
+- Thus $T(n) = \Theta(n\lg n)$.
+
+#### c
+
+Use a recursion tree to determine a good asymptotic upper bound on the given recurrence for the worst pivot value. Use the substitution method to verify your answer.
+
+- The worst pivot value is the smallest value in the given array. Thus given recurrence changes to:
+
+$$
+T(n) = \begin{cases}
+O(n) & \text{if } L.length = k - 1 \\
+T(n - 1) + O(n) & \text{elsewhere}
+\end{cases}
+$$
+
+- Since the subproblem size for a node at depth $i$ is $n - i$, the tree has $n$ levels.
+
+- The number of nodes at depth $i$ is 1 and each node at depth $i$ has a cost of $c(n - i)$, in which $c$ represents the constant factor of the $O(n)$ term.
+
+- Multiplying, the total cost over all nodes at depth $i$, except for $i = n - 1$ is $cn(n-i) \le cn^2$
+
+- The bottom level, at depth $n - 1$, has a node contributing cost $T(1) = O(n)$.
+
+$$
+\begin{aligned}
+T(n)
+&= \sum_{i=0}^{n-2} cn^2 + O(n)\\
+&= c{(n-2)(n-1)(2n-3) \over 6} + O(n) \\
+&= O(n^3)
+\end{aligned}
+$$
+
+- We guess $T(n) \le cn^3$.
+
+$$
+\begin{aligned}
+T(n)
+&\le c(n-1)^3 + O(n) \\
+&\le cn^3
+\end{aligned}
+$$
+
+- where the last step holds for $cn \le O(n)$.
+
+### 3 Tower of hanoi
+
+#### a
+
+Write pseudocode for solution of tower of hanoi problem using divide-and-conquer.
+
+- `MOVE-TOWER(n, departure, arrival, auxiliary)`:
+
+```c
+if n == 1
+    move 1 disk from departure to arrival
+MOVE-TOWER(n-1, departure, auxiliary, arrival)
+move 1 disk from departure to arrival
+MOVE-TOWER(n-1, auxiliary, arrival, departure)
+```
+
+#### b
+
+Make recurrence for your solution in tower of hanoi problem.
+
+$$
+T(n) = \begin{cases}
+\Theta(1) & \text{if }n=1 \\
+2T(n-1) + \Theta(1) & \text{if }n > 1
+\end{cases}
+$$
+
+#### c
+
+Use a recursion tree to determine a good asymptotic upper bound on the your recurrence. Use the substitution method to verify your answer.
+
+- The subproblem size for a node at depth $i$ is $n - i$. Thus the tree has $n$ levels.
+
+- The number of nodes at depth $i$ is $2^i$ and each node at depth $i$ has a cost of 1.
+
+- Multiplying, the total cost over all nodes at depth $i$ is $2^i$.
+
+$$
+\begin{aligned}
+T(n) 
+&= \sum_{i=0}^{n-1} 2^i \\
+&= {2^n - 1 \over 2 - 1} \\
+&= 2^n - 1 \\
+&= O(2^n)
+\end{aligned}
+$$
+
+- We guess $T(n) \le c2^n$.
+
+$$
+\begin{aligned}
+T(n)
+&\le 2c2^{n-1} + \Theta(1) \\
+&= c2^n + \Theta(1)
+\end{aligned}
+$$
+
+- Since our guess failed, we guess $T(n) \le c(2^n - 1)$ instead.
+
+$$
+\begin{aligned}
+T(n)
+&\le 2c(2^{n-1} - 1) + \Theta(1) \\
+&= c2^n -2c + \Theta(1) \\
+&\le c(2^n - 1)
+\end{aligned}
+$$
+
+- where the last step holds as long as $c \ge \Theta(1)$
