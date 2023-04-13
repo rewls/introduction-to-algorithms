@@ -271,7 +271,7 @@ $$
 
     - Thus, the equality holds for some $k+1$.
 
-- Conclution: Since both the base case and inductive step have been proved as true, by mathematical induction the equality holds for every natural number $n$.
+- Conclusion: Since both the base case and inductive step have been proved as true, by mathematical induction the equality holds for every natural number $n$.
 
 #### 8
 
