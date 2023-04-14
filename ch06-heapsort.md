@@ -124,7 +124,7 @@ while true
 
 #### 6
 
-- The worst-case is the array satisfying min-heap property.
+- The worst-case is the array that is sorted in incresing order.
 
 - The worst-case cause MAX-HEAPIFY to be called recursively at every node on a simple path from the root down to a leaf.
 
