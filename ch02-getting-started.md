@@ -50,7 +50,7 @@ return NIL
 
 - Loop invariant: At the start of each iteration of the `for` loop of lines 1-4, the subarray `A[1..i-1]` consists of the elements not equal to `ν`.
 
-- Initialization: Before the first loop interation, when `i = 1`, `A[1..i-1]` is the empty array, thus loop variant is preserved.
+- Initialization: Before the first loop iteration, when `i = 1`, `A[1..i-1]` is the empty array, thus loop variant is preserved.
 
 - Maintenance: Incrementing `i` for the next iteration of the `for` loop, when `A[i] != ν`, thus after incrementing the elements in `A[1..i]` is different than `ν`.
 
