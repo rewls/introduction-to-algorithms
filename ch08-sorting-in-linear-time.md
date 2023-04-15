@@ -185,7 +185,13 @@ FOX     FOX     RUG     TEA
 
 - Initialization: Before the first loop iteration, when $i = 1$, the given array is sorted on the last 0 digits trivially.
 
-- Maintenance: Assume that the given array is sorted on the last $i-1$ digits. The body of the for loop sorts the given array by digit $i$, which results in the array sorted on the last $i$ digits. Incrementing $i$ by 1, the loop invariant preserves.
+- Maintenance: Assume that the given array is sorted on the last $i-1$ digits. The body of the for loop sorts the given array by digit $i$, which results in the array sorted on the last $i$ digits. Incrementing $i$ by 1, the loop invariant preserves. The process of the body of the for loop represents three case, for the two numbers a and b whose digit $i$ is denoted by $a_i$ and $b_i$:
+
+    1. If $a_i > b_i$, the algorithm puts $a$ after $b$, which is correct order.
+
+    2. If $a_i < b_i$, the algorithm puts $a$ before $b$, which is correct order.
+
+    3. If $a_i = b_i$, the algorithm puts $a$ and $b$ in order as previous sort puts because radix sort numbers by some digit using a stable sort. It is correct order since when high-order digits is same the order is determined by the lower-order digits and we have sorted already in previous sort by lower-order digits.
 
 - Termination: The algorithm terminates when $i = d + 1$. The given array have been sorted on the last $d$ digits, which means the entire array is sorted.
 
