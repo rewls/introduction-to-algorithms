@@ -1,5 +1,25 @@
 # Ch12 Binary Search Trees
 
+## Contents
+
+III Data Structures
+
+- Ch12 Binary Search Trees
+
+    - 12.1 What is a binary search tree?
+
+    - 12.2 Querying a binary search tree
+
+        - Minimum and maximum
+
+        - Successor and predeccessor
+
+    - 12.3 Insertion and deletion
+
+        - Insertion
+
+        - Deletion
+
 ## 12.1 What is a binary search tree?
 
 ### Exercises

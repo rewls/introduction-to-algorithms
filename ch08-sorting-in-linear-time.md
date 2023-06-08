@@ -1,5 +1,23 @@
 # Ch8 Sorting in Linear Time
 
+## Contents
+
+II Sorting and Order Statistics
+
+- Ch8 Sorting in Linear Time
+
+    - 8.1 Lower bounds for sorting
+
+        - The decision-tree model
+
+        - A lower bound for the worst case
+
+    - 8.2 Counting sort
+
+    - 8.3 Radix sort
+
+    - 8.4 Bucket sort
+
 ## 8.1 Lower bounds for sorting
 
 ### Exercises

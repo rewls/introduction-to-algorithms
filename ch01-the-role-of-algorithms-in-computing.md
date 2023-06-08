@@ -1,5 +1,29 @@
 # Ch1 The Role of Algorithms in Computing
 
+## Contents
+
+I Foundations
+
+- Ch1 The Role of Algorithms in Computing
+
+    - 1.1 Algorithms
+
+        - What kinds of problems are solved by algorithms?
+
+        - Data structures
+
+        - Technique
+
+        - Hard problems
+
+        - Parallelism
+
+    - 1.2 Algorithms as a technology
+
+        - Efficiency
+        
+        - Algorithms and other technologies
+
 ## 1.1 Algorithms
 
 ### Exercises

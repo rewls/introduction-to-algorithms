@@ -1,5 +1,51 @@
 # Ch3 Growth of Functions
 
+## Contents
+
+I Foundations
+
+- Ch3 Growth of Functions
+
+    - 3.1 Asymptotic notation
+
+        - Asymptotic notation, funnctions, and running times
+
+        - $\Theta$-notation
+
+        - $O$-notation
+
+        - $\Omega$-notation
+
+        - Asymptotic notation in equations and inequalities
+
+        - $o$-notation
+
+        - $\omega$-notation
+
+        - Comparing functions
+
+    - 3.2 Standard notations and common functions
+
+        - Monotonicity
+
+        - Floors and ceilings
+
+        - Modular arithmetic
+
+        - Polynomials
+
+        - Exponentials
+
+        - Logarithms
+
+        - Factorials
+
+        - Functional iteration
+
+        - The iterated logarithm function
+
+        - Fibonacci numbers
+
 ## 3.1 Asymptotic notation
 
 ### Exercises

@@ -1,5 +1,41 @@
 # Ch11 Hash Tables
 
+## Contents
+
+III Data Structures
+
+- Ch11 Hash Tables
+
+    - 11.1 Direct-address tables
+
+    - 11.2 Hash tables
+
+        - Collision resolution by chaining
+
+        - Analysis of hashing with chaining
+
+    - 11.3 Hash function
+
+        - What makes a good hash function?
+
+        - Interpreting keys as natural numbers
+
+        - 11.3.1 The division method
+
+        - 11.3.2 The multiplication method
+
+    - 11.4 Open addressing
+
+        - Linear probing
+
+        - Quadratic probing
+
+        - Double hashing
+
+        - Analysis of open-address hashing
+
+    - 11.5 Perfect hashing
+
 ## 11.1 Direct-address tables
 
 ### Exercises

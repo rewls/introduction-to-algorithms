@@ -1,5 +1,35 @@
 # Ch7 Quicksort
 
+## Contents
+
+II Sorting and Order Statistics
+
+- Ch7 Quicksort
+
+    - 7.1 Description of quickwort
+
+        - Partitioning the array
+
+    - 7.2 Performance of quicksort
+
+        - Worst-case partitioning
+
+        - Best-case partitioning
+
+        - Balanced partitioning
+
+        - Intuition for the average case
+
+    - 7.3 A randomized version of quicksort
+
+    - 7.4 Analysis of quicksort
+
+        - 7.4.1 Worst-case analysis
+
+        - 7.4.2 Expected running time
+
+            - Running time and comparisons
+
 ## 7.1 Description of quicksort
 
 ### Exercises

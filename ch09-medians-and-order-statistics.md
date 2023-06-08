@@ -1,5 +1,17 @@
 # Ch9 Medians and Order Statistics
 
+## Contents
+
+II Sorting and Order Statistics
+
+- Ch9 Medians and Order Statistics
+
+    - 9.1 Minimum and maximum
+
+    - 9.2 Selection in expected linear time
+
+    - 9.3 Selection in worst-case linear time
+
 ## 9.1 Minimum and maximum
 
 ### Exercises

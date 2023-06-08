@@ -1,5 +1,49 @@
 # Ch4 Divide-and-Conquer
 
+## Contents
+
+I Foundations
+
+- Ch4 Divide-and-Conquer
+
+    - Recurrences
+
+    - Technicalities in recurrences
+
+    - 4.1 The maximum-subarray problem
+
+        - A brute-force solution
+
+        - A transformation
+        
+        - A solution using divide-and-conquer
+
+        - Analyzing the divide-and-conquer algorithm
+
+    - 4.2 Starssen's algorithm for matrix multiplication
+
+        - A simple divide-and-conquer algorithm
+
+        - Strassen's method
+
+    - 4.3 The substitution method for solving recurrences
+
+        - Making a good guess
+
+        - Subtleties
+
+        - Avoiding pitfalls
+
+        - Changing variables
+
+    - 4.4 The recursion-tree mdthod for solving recurrence
+
+    - 4.5 The master method for solving recurrences
+
+        - The master theorem
+
+        - Using the master method
+
 ## 4.1 The maximum-subarray problem
 
 ### Exercises
@@ -683,12 +727,23 @@ $$
 \begin{aligned}
 T(n)
 &\le 2c(n/2)^2 + O(n) \\
-&= cn/2 + O(n) \\
-&\le cn
+&= cn^2/2 + O(n) \\
+&\le cn^2
 \end{aligned}
 $$
 
-- where the last step holds for $cn >= 2O(n)$.
+- Since our guess failed, we guess $T(n) \le c(n^2 - n)$ instead.
+
+$$
+\begin{aligned}
+T(n)
+&\le 2c((n/2)^2 - (n/2)) + O(n) \\
+&= cn^2/2 - cn + O(n) \\
+&\le cn^2
+\end{aligned}
+$$
+
+- where the last step holds for $cn >= O(n)$.
 
 #### b
 

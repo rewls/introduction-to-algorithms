@@ -1,5 +1,33 @@
 # Ch2 Getting Started
 
+## Contents
+
+I Foundations
+
+- Ch2 Getting Started
+
+    - 2.1 Insertion sort
+
+        - Loop invariants and the correctness of insertion sort
+
+        - Pseudocode conventions
+
+    - 2.2 Analyzing algorithms
+
+        - Anallysis of insertion sort
+
+        - Worst-case and average-case analysis
+
+        - Order of growth
+
+    - 2.3 Designing algorithms
+
+        - 2.3.1 The divide-and-conquer approach
+
+        - 2.3.2 Analyzing divide-and-conquer algorithms
+
+            - Analysis of merge sort
+
 ## 2.1 Insertion sort
 
 ### Exercises

@@ -1,5 +1,21 @@
 # Ch6 Heapsort
 
+## Contetns
+
+II Sorting and Order Statistics
+
+- Ch6 Heapsort 
+
+    - 6.1 Heaps
+
+    - 6.2 Maintaining the heap property
+
+    - 6.3 Building a heap
+
+    - 6.4 The heapsort algorithms
+
+    - 6.5 Priority queues
+
 ## 6.1 Heaps
 
 ### Exercises
